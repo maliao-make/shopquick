@@ -36,8 +36,8 @@ export default {
         ]
       },
       formLogin: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       }
     }
   },
@@ -46,7 +46,7 @@ export default {
       this.$refs.formLogin.validate(async (valid) => {
         if (valid) {
           const {data: res} = await this.$http.post('login', this.formLogin)
-          if (res.meta.status !== 200) return this.$message.error("登陆成功")
+          if (res.meta.status !== 200) return this.$message.error("用户名或密码错误")
           this.$message.success("登陆成功")
           window.sessionStorage.setItem("token", res.data.token)
           await this.$router.push("/home")
