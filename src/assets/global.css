@@ -1,23 +1,27 @@
-html,body,#app{
-    height:100%;
-    margin:0;
-    padding:0;
+html, body, #app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    min-width: 1280px;
 }
 
-.el-breadcrumb{
-    margin-bottom:20px;
+.el-breadcrumb {
+    margin-bottom: 20px;
     fontsize: 15px;
 }
 
-.el-card{
-    box-shadow:0 1px 1px rgb(0,0,0,0.15) !important;
+.el-card {
+    box-shadow: 0 1px 1px rgb(0, 0, 0, 0.15) !important;
+    height: calc(100vh - 15vh);
+    overflow-y: scroll;
 }
 
-.el-table{
-    margin-top:15px;
+.el-table {
+    margin-top: 15px;
     font: 12px;
 }
 
-.el-pagination{
+.el-pagination {
     margin-top: 15px;
 }
