@@ -95,6 +95,7 @@
         <el-button type="primary" @click="edits">修 改</el-button>
       </span>
       </el-dialog>
+
       <!--分配权限对话款-->
       <el-dialog
           title="分配权限"

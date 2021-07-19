@@ -5,6 +5,7 @@
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
+
     <el-card class="box-card">
       <!-- 搜索与添加-->
       <el-row :gutter="20">
@@ -48,7 +49,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="queryInfo.pagenum"
-            :page-sizes="[1,2,5,10]"
+            :page-sizes="[5,10,30,50]"
             :page-size="queryInfo.pagesize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total">
@@ -222,6 +223,7 @@ export default {
     },
     //展示数据条数
     handleSizeChange(newSize) {
+
       // console.log(newSize)
       this.queryInfo.pagesize = newSize
       this.getUserList()
