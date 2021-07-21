@@ -52,7 +52,8 @@
             :page-sizes="[5,10,30,50]"
             :page-size="queryInfo.pagesize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="total">
+            :total="total"
+            :current-page.sync = "currentpage">
         </el-pagination>
       </el-row>
     </el-card>
@@ -150,6 +151,8 @@ export default {
     }
 
     return {
+      //当前页
+      currentpage:1,
       queryInfo: {
         query: '',
         pagenum: 1,
@@ -220,6 +223,7 @@ export default {
       this.userList = res.data.users
       this.total = res.data.total
       // console.log(res)
+      console.log(this.queryInfo)
     },
     //展示数据条数
     handleSizeChange(newSize) {
@@ -230,7 +234,7 @@ export default {
     },
     // 展示数据页数
     handleCurrentChange(newPage) {
-      // console.log(newPage)
+      console.log(newPage)
       this.queryInfo.pagenum = newPage
       this.getUserList()
     },
@@ -305,6 +309,10 @@ export default {
       const {data: res} = await this.$http.delete('users/' + id)
       if (res.meta.status !== 200) return this.$message.error("删除用户失败")
       this.$message.success('删除用户成功')
+      let total = this.total-1
+      if (total%this.queryInfo.pagesize===0){
+        this.queryInfo.pagenum = this.queryInfo.pagenum-1
+      }
       await this.getUserList()
     },
 

@@ -275,6 +275,10 @@ export default {
       const {data: res} = await this.$http.delete('categories/' + id)
       if (res.meta.status !== 200) return this.$message.error("删除分类失败")
       this.$message.success('删除分类成功')
+      let total = this.total-1
+      if (total%this.categoryInfo.pagesize===0){
+        this.categoryInfo.pagenum = this.categoryInfo.pagenum-1
+      }
       await this.getCategoryList()
     }
   }
