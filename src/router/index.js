@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 import login from "@/components/login";
 import home from "@/components/home";
 import welcome from "@/components/welcome";
-import users from "@/components/user/users";
+import users from "@/views/user/users";
 import Rights from "@/views/power/Rights";
 import roles from "@/views/power/roles";
 import Cate from "@/views/goods/Cate";
+import params from "@/views/goods/params";
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
                 path: '/categories',
                 name: 'categories',
                 component: Cate
+            },
+            {
+                path: '/params',
+                name: 'params',
+                component: params
             }
         ]
     }

@@ -6,7 +6,6 @@
       <el-breadcrumb-item>商品分类</el-breadcrumb-item>
     </el-breadcrumb>
 
-
     <el-card class="box-card">
       <!-- 添加分类-->
       <el-row>
@@ -87,9 +86,9 @@
           </span>
     </el-dialog>
 
-    <!-- 修改用户对话框  -->
+    <!-- 修改分类对话框  -->
     <el-dialog
-        title="修改用户"
+        title="修改分类"
         :visible.sync="affirmAddCategoryDialog"
         width="50%"
         >
@@ -181,15 +180,13 @@ export default {
       this.total = res.data.total
 
     },
-    //展示数据条数
+    // 展示数据条数
     handleSizeChange(newSize) {
-
       this.categoryInfo.pagesize = newSize
       this.getCategoryList()
     },
     // 展示数据页数
     handleCurrentChange(newPage) {
-
       this.categoryInfo.pagenum = newPage
       this.getCategoryList()
     },

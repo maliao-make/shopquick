@@ -48,3 +48,7 @@ html, body, #app {
 .el-cascader-panel .el-cascader-node__postfix {
     top: 10px;
 }
+
+.el-alert{
+    margin-bottom: 10px;
+}
