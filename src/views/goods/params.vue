@@ -21,7 +21,7 @@
             <!--展开行-->
             <el-table-column type="expand">
               <template slot-scope="scope">
-                <el-tag v-for="(item,index) in scope.row.attr_vals" :key="index" closable @close="handleClose(scope.row)">{{item}}</el-tag>
+                <el-tag v-for="(item,index) in scope.row.attr_vals" :key="index" closable @close="handleClose(scope.row,index)">{{item}}</el-tag>
                 <el-input
                     class="input-new-tag"
                     v-if="scope.row.inputVisible"
@@ -56,7 +56,7 @@
           <el-table :data="onlyTabData" stripe>
             <el-table-column type="expand">
               <template slot-scope="scope">
-                <el-tag v-for="(item,index) in scope.row.attr_vals" :key="index" closable @close="handleClose(scope.row)">{{item}}</el-tag>
+                <el-tag v-for="(item,index) in scope.row.attr_vals" :key="index" closable @close="handleClose(scope.row,index)">{{item}}</el-tag>
                 <el-input
                     class="input-new-tag"
                     v-if="scope.row.inputVisible"
@@ -91,7 +91,6 @@
         :title="'添加'+title"
         :visible.sync="addDialogVisible"
         width="30%"
-        :before-close="handleClose"
         @close="addDialogClose">
       <el-form :model="cForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
         <el-form-item
@@ -115,7 +114,6 @@
         :title="'修改'+title"
         :visible.sync="editDialogVisible"
         width="30%"
-        :before-close="handleClose"
         @close="editDialogClose">
       <el-form :model="editForm" ref="editForm" label-width="100px" class="demo-ruleForm">
         <el-form-item
@@ -263,7 +261,7 @@ export default {
         if (res.meta.status != 200) {
           return this.$message.error("修改数据失败")
         }
-        this.$message.success("修改书库成功")
+        this.$message.success("修改数据成功")
         this.editDialogVisible = false
         await this.getParamsData()
       })
@@ -284,7 +282,7 @@ export default {
       if (res.meta.status != 200) {
         this.$message.error('删除参数失败')
       }
-      this.$message.success('姗迟参数成功')
+      this.$message.success('删除参数成功')
       await this.getParamsData()
     },
 
@@ -308,13 +306,15 @@ export default {
       });
     },
     async saveAttrValues(row){
-      const {data : res} = await this.$http.put(`categories/${this.cateId}/attributes/${attr_id}`, {attr_name: row.attr_name,attr_sel:row.attr_sel,attr_vals:row.attr_vals.join(' '),})
+      console.log(row.attr_vals.join(' '))
+      const {data : res} = await this.$http.put(`categories/${this.cateId}/attributes/${row.attr_id}`, {attr_name: row.attr_name,attr_sel:row.attr_sel,attr_vals:row.attr_vals.join(' '),})
       if (res.meta.status != 200){
         return this.$message.error('修改参数项失败！')
       }
       this.$message.success('修改参数项成功')
     },
-    handleClose(index,row){
+    handleClose(row,index){
+      console.log(row)
       row.attr_vals.splice(index,1)
       this.saveAttrValues(row)
     }
