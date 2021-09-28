@@ -221,7 +221,6 @@ export default {
       if (this.selectedKeys.length > 0) {
         this.addCategoryForm.cat_pid = this.selectedKeys[this.selectedKeys.length - 1]
         this.addCategoryForm.cat_level = this.selectedKeys.length
-        return
       } else {
         this.addCategoryForm.cat_pid = 0
         this.addCategoryForm.cat_level = 0
